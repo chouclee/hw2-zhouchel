@@ -4,10 +4,13 @@
   <primitive>false</primitive>
   <delegateAnalysisEngineSpecifiers>
     <delegateAnalysisEngine key="geneAnnotator">
-      <import name="/analysisEngine/geneAnnotator"/>
+      <import location="geneAnnotator.xml"/>
     </delegateAnalysisEngine>
     <delegateAnalysisEngine key="sentenceAnnotator">
-      <import name="/analysisEngine/sentenceAnnotator"/>
+      <import location="sentenceAnnotator.xml"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="casConsumerDescriptor">
+      <import name="descriptors.casConsumerDescriptor"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -15,12 +18,13 @@
     <description/>
     <version>1.0</version>
     <vendor>zhouchel</vendor>
-    <configurationParameters/>
+    <configurationParameters searchStrategy="language_fallback"/>
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
         <node>sentenceAnnotator</node>
         <node>geneAnnotator</node>
+        <node>casConsumerDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>
@@ -28,7 +32,10 @@
     <capabilities>
       <capability>
         <inputs/>
-        <outputs/>
+        <outputs>
+          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.GeneTag</type>
+          <type allAnnotatorFeatures="true">edu.cmu.deiis.types.SentenceTag</type>
+        </outputs>
         <languagesSupported/>
       </capability>
     </capabilities>

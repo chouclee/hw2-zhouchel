@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Mon Sep 29 01:21:59 EDT 2014
+ * Updated by JCasGen Tue Sep 30 22:02:40 EDT 2014
  * XML source: /home/happyuser/git/hw2-zhouchel/hw2-zhouchel/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class GeneTag extends Annotation {
@@ -96,6 +96,24 @@ public class GeneTag extends Annotation {
     if (GeneTag_Type.featOkTst && ((GeneTag_Type)jcasType).casFeat_gene == null)
       jcasType.jcas.throwFeatMissing("gene", "edu.cmu.deiis.types.GeneTag");
     jcasType.ll_cas.ll_setStringValue(addr, ((GeneTag_Type)jcasType).casFeatCode_gene, v);}    
+   
+    
+  //*--------------*
+  //* Feature: sentence
+
+  /** getter for sentence - gets 
+   * @generated */
+  public String getSentence() {
+    if (GeneTag_Type.featOkTst && ((GeneTag_Type)jcasType).casFeat_sentence == null)
+      jcasType.jcas.throwFeatMissing("sentence", "edu.cmu.deiis.types.GeneTag");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((GeneTag_Type)jcasType).casFeatCode_sentence);}
+    
+  /** setter for sentence - sets  
+   * @generated */
+  public void setSentence(String v) {
+    if (GeneTag_Type.featOkTst && ((GeneTag_Type)jcasType).casFeat_sentence == null)
+      jcasType.jcas.throwFeatMissing("sentence", "edu.cmu.deiis.types.GeneTag");
+    jcasType.ll_cas.ll_setStringValue(addr, ((GeneTag_Type)jcasType).casFeatCode_sentence, v);}    
   }
 
     

@@ -21,7 +21,7 @@ public class SentenceAnnotator extends JCasAnnotator_ImplBase {
       annotation.setId(id);
       annotation.setSentence(text);
       annotation.addToIndexes();
-      getContext().getLogger().log(Level.FINEST, "Found: " + annotation);
+      //getContext().getLogger().log(Level.FINEST, "Found: " + annotation);
     }
   }
 }

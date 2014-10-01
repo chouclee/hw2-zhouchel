@@ -8,6 +8,7 @@ import org.apache.uima.cas.FSIterator;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.apache.uima.util.Level;
 
 import com.aliasi.chunk.Chunk;
 
@@ -16,6 +17,7 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
   @Override
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     //String model = ((String)aContext.getConfigParameterValue(PARAM_MODEL)).trim();
+   super.initialize(aContext);
    this.ner = null;
    try {
      String model = "src/main/resources/ne-en-bio-genetag.HmmChunker";
@@ -47,8 +49,9 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
         geneAnnotation.setEnd(end);
         geneAnnotation.setId(id);
         geneAnnotation.setGene(gene);
-        //geneAnnotation.setSentence(text);
+        geneAnnotation.setSentence(text);
         geneAnnotation.addToIndexes();
+        getContext().getLogger().log(Level.FINEST, "Found: " + annotation);
       }
     }
   }

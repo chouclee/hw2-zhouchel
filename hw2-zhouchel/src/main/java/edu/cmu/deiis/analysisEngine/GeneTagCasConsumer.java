@@ -46,8 +46,7 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
    */
   public void initialize() {
     writer = null;
-    //String output = ((String) getConfigParameterValue(PARAM_OUTPUT)).trim();
-    String output = "test.out";
+    String output = ((String) getConfigParameterValue(PARAM_OUTPUT)).trim();
     File file = new File(output);
     try {
       writer = new BufferedWriter(new FileWriter(file, false));

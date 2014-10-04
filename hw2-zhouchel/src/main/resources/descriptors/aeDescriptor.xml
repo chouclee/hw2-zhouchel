@@ -6,12 +6,6 @@
     <delegateAnalysisEngine key="geneAnnotator">
       <import location="geneAnnotator.xml"/>
     </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="sentenceAnnotator">
-      <import location="sentenceAnnotator.xml"/>
-    </delegateAnalysisEngine>
-    <delegateAnalysisEngine key="casConsumerDescriptor">
-      <import name="descriptors.casConsumerDescriptor"/>
-    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>aeDescriptor</name>
@@ -22,9 +16,7 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>sentenceAnnotator</node>
         <node>geneAnnotator</node>
-        <node>casConsumerDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

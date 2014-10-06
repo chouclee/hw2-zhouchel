@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Sun Oct 05 20:12:56 EDT 2014
+ * Updated by JCasGen Sun Oct 05 20:57:50 EDT 2014
  * XML source: /home/happyuser/git/hw2-zhouchel/hw2-zhouchel/src/main/resources/descriptors/deiis_types.xml
  * @generated */
 public class GeneConfidence extends Annotation {
@@ -121,17 +121,17 @@ public class GeneConfidence extends Annotation {
 
   /** getter for processedId - gets 
    * @generated */
-  public String getProcessedId() {
+  public int getProcessedId() {
     if (GeneConfidence_Type.featOkTst && ((GeneConfidence_Type)jcasType).casFeat_processedId == null)
       jcasType.jcas.throwFeatMissing("processedId", "edu.cmu.deiis.types.GeneConfidence");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((GeneConfidence_Type)jcasType).casFeatCode_processedId);}
+    return jcasType.ll_cas.ll_getIntValue(addr, ((GeneConfidence_Type)jcasType).casFeatCode_processedId);}
     
   /** setter for processedId - sets  
    * @generated */
-  public void setProcessedId(String v) {
+  public void setProcessedId(int v) {
     if (GeneConfidence_Type.featOkTst && ((GeneConfidence_Type)jcasType).casFeat_processedId == null)
       jcasType.jcas.throwFeatMissing("processedId", "edu.cmu.deiis.types.GeneConfidence");
-    jcasType.ll_cas.ll_setStringValue(addr, ((GeneConfidence_Type)jcasType).casFeatCode_processedId, v);}    
+    jcasType.ll_cas.ll_setIntValue(addr, ((GeneConfidence_Type)jcasType).casFeatCode_processedId, v);}    
    
     
   //*--------------*

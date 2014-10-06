@@ -1,12 +1,14 @@
 package edu.cmu.deiis.analysisEngine;
 
 import edu.cmu.deiis.types.*;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashSet;
 
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
@@ -81,8 +83,10 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
       throw new ResourceProcessException(e);
     }
     String id, geneName, text;
+    String entry;
     int begin, end;
     FSIterator<Annotation> iter = jcas.getAnnotationIndex(GeneTag.type).iterator();
+    HashSet<String> hasBeenCounted = new HashSet<String>();
     while (iter.hasNext()) {
       GeneTag geneAnnotation = (GeneTag) iter.next();// get GeneTag annotation
       id = geneAnnotation.getId(); // get sentence ID
@@ -93,10 +97,14 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
       // calculate whitespace-excluded offsets
       begin = begin - countWhiteSpaces(text.substring(0, begin));
       end = begin + geneName.length() - countWhiteSpaces(geneName) - 1;
-      try {
-        writer.write(id + "|" + begin + " " + end + "|" + geneName + "\n");
-      } catch (IOException e) {
-        throw new ResourceProcessException(e);
+      entry = id + "|" + begin + " " + end + "|" + geneName + "\n";
+      if (!hasBeenCounted.contains(entry)) {
+        hasBeenCounted.add(entry);
+        try {
+          writer.write(entry);
+        } catch (IOException e) {
+          throw new ResourceProcessException(e);
+        }
       }
     }
   }

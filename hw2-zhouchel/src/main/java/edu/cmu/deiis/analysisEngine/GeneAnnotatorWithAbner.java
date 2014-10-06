@@ -46,10 +46,15 @@ public class GeneAnnotatorWithAbner extends JCasAnnotator_ImplBase {
         geneAnnotation.setSentence(text);
         geneAnnotation.addToIndexes();*/
         
-        Annotation confidence = new GeneConfidence(aJCas);
+        GeneConfidence confidence = new GeneConfidence(aJCas);
         confidence.setBegin(begin);
         confidence.setEnd(end);
-
+        confidence.setId(id);
+        confidence.setGene(chunk);
+        confidence.setSentence(text);
+        confidence.setConfidence(1.0);
+        confidence.setProcessedId(1); // 1 stands for Abner
+        confidence.addToIndexes();
       }
     }
   }

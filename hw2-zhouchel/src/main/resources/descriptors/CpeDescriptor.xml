@@ -18,7 +18,7 @@
 	<casProcessors casPoolSize="3" processingUnitThreadCount="1">
 		<casProcessor deployment="integrated" name="geneAnnotator">
 			<descriptor>
-				<include href="src/main/resources/descriptors/geneAnnotator.xml" />
+				<include href="src/main/resources/descriptors/aeDescriptor.xml" />
 			</descriptor>
 			<deploymentParameters />
 			<errorHandling>

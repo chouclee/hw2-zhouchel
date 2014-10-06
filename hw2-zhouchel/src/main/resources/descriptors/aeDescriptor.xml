@@ -3,8 +3,14 @@
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>false</primitive>
   <delegateAnalysisEngineSpecifiers>
-    <delegateAnalysisEngine key="geneAnnotator">
-      <import location="geneAnnotator.xml"/>
+    <delegateAnalysisEngine key="geneAnnotatorLingPipe">
+      <import name="descriptors.geneAnnotatorLingPipe"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="geneAnnotatorAbner">
+      <import name="descriptors.geneAnnotatorAbner"/>
+    </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="evaluationDescriptor">
+      <import name="descriptors.evaluationDescriptor"/>
     </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
@@ -16,7 +22,9 @@
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
-        <node>geneAnnotator</node>
+        <node>geneAnnotatorAbner</node>
+        <node>geneAnnotatorLingPipe</node>
+        <node>evaluationDescriptor</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

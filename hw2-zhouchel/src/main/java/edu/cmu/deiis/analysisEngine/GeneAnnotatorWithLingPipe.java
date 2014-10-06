@@ -21,7 +21,7 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
    this.ner = null;
    try {
      String model = "src/main/resources/ne-en-bio-genetag.HmmChunker";
-     ner = new LingPipeGeneNamedEntityRecognizer(model, 15, 0.65);
+     ner = new LingPipeGeneNamedEntityRecognizer(model, 15, 0.1);
    } catch (ResourceInitializationException e) {
      // TODO Auto-generated catch block
      System.out.println("Failed to load Model");
@@ -44,14 +44,23 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
         end = chunk.end();
         gene = text.substring(begin, end);
 
-        GeneTag geneAnnotation = new GeneTag(aJCas);
+       /* GeneTag geneAnnotation = new GeneTag(aJCas);
         geneAnnotation.setBegin(begin);
         geneAnnotation.setEnd(end);
         geneAnnotation.setId(id);
         geneAnnotation.setGene(gene);
         geneAnnotation.setSentence(text);
         geneAnnotation.addToIndexes();
-        getContext().getLogger().log(Level.FINEST, "Found: " + annotation);
+        getContext().getLogger().log(Level.FINEST, "Found: " + annotation);*/
+        GeneConfidence confidence = new GeneConfidence(aJCas);
+        confidence.setBegin(begin);
+        confidence.setEnd(end);
+        confidence.setId(id);
+        confidence.setGene(gene);
+        confidence.setSentence(text);
+        confidence.setConfidence(Math.pow(2.0, chunk.score()));
+        confidence.setProcessedId(0);
+        confidence.addToIndexes();
       }
     }
   }

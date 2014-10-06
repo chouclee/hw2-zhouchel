@@ -5,9 +5,9 @@
   <annotatorImplementationName>edu.cmu.deiis.analysisEngine.GeneAnnotatorWithAbner</annotatorImplementationName>
   <analysisEngineMetaData>
     <name>geneAnnotator</name>
-    <description/>
+    <description>geneAnnotator using Abner</description>
     <version>1.0</version>
-    <vendor/>
+    <vendor>zhouchel</vendor>
     <configurationParameters/>
     <configurationParameterSettings/>
     <typeSystemDescription>

@@ -90,6 +90,26 @@ public class LingPipeGeneNamedEntityRecognizer {
   }
   
   /**
+   * Constructor for LingPipeGeneNamedEntityRecognizer using ConfidenceChunker. 
+   * 
+   * @param chunker
+   *          Chunker that initializes from a model 
+   * @param MAX_N_BEST_CHUNKS
+   *          The maximum number of the best chunks returned by ConfidenceChunker 
+   * @param threshold
+   *          Confident threshold for accepting chunks 
+   * @throws ResourceInitializationException
+   */
+  public LingPipeGeneNamedEntityRecognizer(Chunker chunker, int MAX_N_BEST_CHUNKS, double threshold)
+          throws ResourceInitializationException {
+      // initialize a ConfidenceChunker
+      cfdchunker = (ConfidenceChunker) chunker;
+      this.chunker = null;
+      this.MAX_N_BEST_CHUNKS = MAX_N_BEST_CHUNKS;
+      this.threshold = threshold;
+  }
+  
+  /**
    * Chuck String into Gene name chunks.
    * This method can be used for both First-BestChunker and ConfidenceChunker.<br>
    * Call {@link com.aliasi.chunk.Chunker#chunk(CharSequence)} for First-BestChunker.<br>

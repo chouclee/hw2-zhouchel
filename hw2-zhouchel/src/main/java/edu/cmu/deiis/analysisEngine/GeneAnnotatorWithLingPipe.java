@@ -1,7 +1,10 @@
 package edu.cmu.deiis.analysisEngine;
 
+import java.io.IOException;
+
 import edu.cmu.deiis.types.*;
 import edu.cmu.deiis.resourceMap.StringMapResource;
+
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.analysis_engine.AnalysisEngineProcessException;
@@ -12,6 +15,8 @@ import org.apache.uima.resource.ResourceAccessException;
 import org.apache.uima.resource.ResourceInitializationException;
 
 import com.aliasi.chunk.Chunk;
+import com.aliasi.chunk.Chunker;
+import com.aliasi.util.AbstractExternalizable;
 
 /**
  * This annotator uses LingPipe toolkit to annotate all gene mentions.
@@ -37,7 +42,14 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
   public void initialize(UimaContext aContext) throws ResourceInitializationException {
     super.initialize(aContext);
     this.ner = null;
+    Chunker chunker;
+    
     try {
+      String filename = (String) aContext.getConfigParameterValue("model");
+      chunker = (Chunker)AbstractExternalizable.readResourceObject(
+              GeneAnnotatorWithLingPipe.class, 
+              filename);
+     
       // get hashMap of all parameters set in paramConfig
       mMap = (StringMapResource) getContext().getResourceObject("paramConfig");
 
@@ -53,7 +65,8 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
         double threshold = Double.parseDouble(mMap.get("LingPipeThreshold"));
 
         // initialize LingPipeGeneNamedEntityRecognizer, use ConfidenceChunker
-        ner = new LingPipeGeneNamedEntityRecognizer(model, MAX_N_BEST_CHUNKS, threshold);
+       // ner = new LingPipeGeneNamedEntityRecognizer(model, MAX_N_BEST_CHUNKS, threshold);
+        ner = new LingPipeGeneNamedEntityRecognizer(chunker, 20, 0.1);
         //System.out.println("MAX_N_BEST_CHUNKS: " + MAX_N_BEST_CHUNKS);
         //System.out.println("Confidence Threshold: " + threshold);
       } else {
@@ -63,6 +76,12 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
     } catch (ResourceAccessException e) {
       // TODO Auto-generated catch block
       System.out.println("Failed to load Model");
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }

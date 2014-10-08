@@ -93,7 +93,6 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
       geneName = geneAnnotation.getGene(); // get Gene name
       begin = geneAnnotation.getBegin(); // begin position of gene name
       text = geneAnnotation.getSentence(); // original sentence text
-
       // calculate whitespace-excluded offsets
       begin = begin - countWhiteSpaces(text.substring(0, begin));
       end = begin + geneName.length() - countWhiteSpaces(geneName) - 1;
@@ -121,7 +120,7 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    /*if (GeneAnnotatorWithLingPipe.mMap.get("Evaluation").equalsIgnoreCase("true")) {
+    if (GeneAnnotatorWithLingPipe.mMap.get("Evaluation").equalsIgnoreCase("true")) {
       String standard;
       try {
         standard = GeneAnnotatorWithLingPipe.mMap.get("Gold_Standard");
@@ -143,13 +142,7 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
       } catch (ResourceProcessException e) {
         e.printStackTrace();
       }
-    }*/
-    String standardOutput = "test.out";
-    CalcPreRecall statistic = new CalcPreRecall(standardOutput,
-            ((String) getConfigParameterValue(PARAM_OUTPUT)).trim());
-    System.out.println("Precision: " + statistic.precision());
-    System.out.println("Recall: " + statistic.recall());
-    System.out.println("F1 score: " + statistic.f1score());
+    }
   }
 
   /*************

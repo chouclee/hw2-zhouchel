@@ -30,5 +30,30 @@
       <outputsNewCASes>false</outputsNewCASes>
     </operationalProperties>
   </analysisEngineMetaData>
-  <resourceManagerConfiguration/>
+  <externalResourceDependencies>
+    <externalResourceDependency>
+      <key>paramConfig</key>
+      <description>parameter configuration</description>
+      <interfaceName>edu.cmu.deiis.resourceMap.StringMapResource</interfaceName>
+      <optional>false</optional>
+    </externalResourceDependency>
+  </externalResourceDependencies>
+  <resourceManagerConfiguration>
+    <externalResources>
+      <externalResource>
+        <name>config</name>
+        <description/>
+        <fileResourceSpecifier>
+          <fileUrl>file:paramConfig</fileUrl>
+        </fileResourceSpecifier>
+        <implementationName>edu.cmu.deiis.resourceMap.StringMapResource_impl</implementationName>
+      </externalResource>
+    </externalResources>
+    <externalResourceBindings>
+      <externalResourceBinding>
+        <key>paramConfig</key>
+        <resourceName>config</resourceName>
+      </externalResourceBinding>
+    </externalResourceBindings>
+  </resourceManagerConfiguration>
 </analysisEngineDescription>

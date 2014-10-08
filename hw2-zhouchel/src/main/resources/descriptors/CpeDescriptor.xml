@@ -9,7 +9,7 @@
 				<nameValuePair>
 					<name>InputFile</name>
 					<value>
-						<string>sample.in</string>
+						<string>src/main/resources/data/sample.in</string>
 					</value>
 				</nameValuePair>
 			</configurationParameterSettings>
@@ -45,7 +45,7 @@
 				<nameValuePair>
 					<name>OutputFile</name>
 					<value>
-						<string>hw2-zhouchel.out</string>
+						<string>src/main/resources/data/hw2-zhouchel.out</string>
 					</value>
 				</nameValuePair>
 			</configurationParameterSettings>

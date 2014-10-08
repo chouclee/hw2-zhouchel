@@ -1,0 +1,7 @@
+model = ne-en-bio-genetag.HmmChunker
+MAX_N_BEST_CHUNKS = 20
+LingPipeThreshold = 0.1
+N-Best_NER = true
+ConfidenceThreshold = 0.8
+Evaluation = true
+Gold_Standard = data/sample.out

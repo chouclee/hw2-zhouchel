@@ -19,7 +19,7 @@
       <nameValuePair>
         <name>OutputFile</name>
         <value>
-          <string>src/main/resources/data/hw2-zhouchel.out</string>
+          <string>hw2-zhouchel.out</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

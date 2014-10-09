@@ -66,7 +66,7 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
 
         // initialize LingPipeGeneNamedEntityRecognizer, use ConfidenceChunker
        // ner = new LingPipeGeneNamedEntityRecognizer(model, MAX_N_BEST_CHUNKS, threshold);
-        ner = new LingPipeGeneNamedEntityRecognizer(chunker, 20, 0.1);
+        ner = new LingPipeGeneNamedEntityRecognizer(chunker, MAX_N_BEST_CHUNKS, threshold);
         //System.out.println("MAX_N_BEST_CHUNKS: " + MAX_N_BEST_CHUNKS);
         //System.out.println("Confidence Threshold: " + threshold);
       } else {

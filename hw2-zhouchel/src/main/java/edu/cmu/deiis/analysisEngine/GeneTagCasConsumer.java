@@ -2,8 +2,10 @@ package edu.cmu.deiis.analysisEngine;
 
 import edu.cmu.deiis.types.*;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,10 +36,11 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
    * Name of configuration parameter that be set to the path of output file(optional)
    */
   public static final String PARAM_OUTPUT = "OutputFile";
+  public static final String PARAM_GOLD = "GoldStand";
 
   private BufferedWriter writer;
 
-  private ClassLoader loader = GeneTagCasConsumer.class.getClassLoader();
+  //private ClassLoader loader = GeneTagCasConsumer.class.getClassLoader();
 
   @Override
   /**
@@ -122,17 +125,14 @@ public class GeneTagCasConsumer extends CasConsumer_ImplBase {
     if (GeneAnnotatorWithLingPipe.mMap.get("Evaluation").equalsIgnoreCase("true")) {
       String standard;
       try {
-        standard = GeneAnnotatorWithLingPipe.mMap.get("Gold_Standard");
+        standard = ((String) getConfigParameterValue(PARAM_GOLD)).trim();
+        //standard = GeneAnnotatorWithLingPipe.mMap.get("Gold_Standard");
         if (standard == null)
           throw new ResourceProcessException();
-
-        URL modelURL = loader.getResource(standard); // get standard output filename
-        
-        String standardOutput = modelURL.getPath();   // get file path to standard output
           
         // Evaluate the final results. Calculate precision and recall
         
-        CalcPreRecall statistic = new CalcPreRecall(standardOutput,
+        CalcPreRecall statistic = new CalcPreRecall(standard,
                 ((String) getConfigParameterValue(PARAM_OUTPUT)).trim());
         System.out.println("Precision: " + statistic.precision());
         System.out.println("Recall: " + statistic.recall());

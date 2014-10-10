@@ -14,12 +14,24 @@
         <multiValued>false</multiValued>
         <mandatory>false</mandatory>
       </configurationParameter>
+      <configurationParameter>
+        <name>GoldStand</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>false</mandatory>
+      </configurationParameter>
     </configurationParameters>
     <configurationParameterSettings>
       <nameValuePair>
         <name>OutputFile</name>
         <value>
           <string>hw2-zhouchel.out</string>
+        </value>
+      </nameValuePair>
+      <nameValuePair>
+        <name>GoldStand</name>
+        <value>
+          <string>hw2.gold_stand</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

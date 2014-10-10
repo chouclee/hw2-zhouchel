@@ -26,6 +26,7 @@ import com.aliasi.util.AbstractExternalizable;
 public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
   /** Map from paramConfig */
   public static StringMapResource mMap;
+  private boolean isConfidenceChunker;
 
   private LingPipeGeneNamedEntityRecognizer ner;
 
@@ -58,6 +59,7 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
 
       String useNBest = mMap.get("N-Best_NER");
       if (useNBest.equalsIgnoreCase("true")) {
+        isConfidenceChunker = true;
         // get parameter for MAX_N_BEST_CHUNKS
         int MAX_N_BEST_CHUNKS = Integer.parseInt(mMap.get("MAX_N_BEST_CHUNKS"));
 
@@ -118,7 +120,10 @@ public class GeneAnnotatorWithLingPipe extends JCasAnnotator_ImplBase {
         confidence.setId(id); // set sentence ID
         confidence.setGene(gene); // set gene name
         confidence.setSentence(text); // set original text
-        confidence.setConfidence(Math.pow(2.0, chunk.score())); // set confidence
+        if (isConfidenceChunker)
+          confidence.setConfidence(Math.pow(2.0, chunk.score())); // set confidence
+        else
+          confidence.setConfidence(1.0); // set confidence
         confidence.setProcessedId(0); // set processed id to 0
         confidence.addToIndexes(); // add this FeatureStructure to Cas index
       }

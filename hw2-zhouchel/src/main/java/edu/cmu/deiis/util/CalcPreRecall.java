@@ -1,8 +1,7 @@
-package edu.cmu.deiis.analysisEngine;
+package edu.cmu.deiis.util;
 
 import java.util.*;
 import java.io.*;
-import edu.cmu.deiis.types.*;
 
 public class CalcPreRecall {
   private int goldNum;

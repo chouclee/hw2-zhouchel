@@ -17,7 +17,7 @@ public class Abner {
     else {
       String[][] chunk = tagger.getEntities(text);
       for (int i = 0; i < chunk[0].length; i++) {
-        if (chunk[1][i].equals("O"))
+        //if (chunk[1][i].equals("O"))
           result.add(chunk[0][i]);
       }
       return result;

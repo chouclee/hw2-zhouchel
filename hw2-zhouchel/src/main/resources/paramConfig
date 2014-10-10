@@ -1,5 +1,5 @@
 MAX_N_BEST_CHUNKS = 30
 LingPipeThreshold = 0.1
 N-Best_NER = true
-ConfidenceThreshold = 0.8
+ConfidenceThreshold = 0.7
 Evaluation = false
